@@ -55,6 +55,19 @@ long long gcd(long long a, long long b){
     }
     return gcd(b, a%b);
 }
+long long lcm(long long a, long long b){
+    long long g = gcd(a,b);
+    return (a*b)/g;
+}
+bool checkPrime(long long n){
+    if(n<=1) return false;
+    if(n<=3) return true;
+    if((n%2==0)||(n%3)==0) return false;
+    for(long long i = 5;i<=sqrtl(n); i+=6){
+        if(n%i==0||(n%(i+2)==0)) return false;
+    }
+    return true;
+}
 int main(){
     int number = 98789;
     int digits = countDigits(number);
@@ -74,4 +87,8 @@ int main(){
     cout <<"Trailing Zeroes for the factorial of "<<number<< " are :" << countTrailingZeroes(number)<< endl;
     cout <<"Trailing Zeroes for the factorial of "<<251<< " are :" << countTrailingZeroes(251)<< endl;
     cout <<"GCD of "<< 12 << " and " << 15 <<" is " << gcd(12,15) << endl;
+
+    cout <<"LCM of " << 4 << " and " << 6 << " is " << lcm(4,6) << endl;
+    bool flag = checkPrime(2121657);
+    cout <<" Is " << 2121657 << " a Prime Number? " << flag << endl;
 }
