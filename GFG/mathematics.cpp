@@ -68,6 +68,32 @@ bool checkPrime(long long n){
     }
     return true;
 }
+vector<long long> checkPrimeFactors(long long n){
+    if(n<=1) return {};
+    vector<long long>ans;
+    while(n%2==0){
+        ans.push_back(2);
+        n /=2;
+    }
+    while(n%3==0){
+        ans.push_back(3);
+        n /=3;
+    }
+    for(long long i =5; i<=sqrtl(n);i +=6){
+        while(n%i==0){
+            ans.push_back(i);
+            n /= i;
+        }
+        while(n%(i+2)==0){
+            ans.push_back(i+2);
+            n /= (i+2);
+        }
+    }
+    if (n>1){
+        ans.push_back(n);
+    }
+    return ans;
+}
 int main(){
     int number = 98789;
     int digits = countDigits(number);
@@ -91,4 +117,10 @@ int main(){
     cout <<"LCM of " << 4 << " and " << 6 << " is " << lcm(4,6) << endl;
     bool flag = checkPrime(2121657);
     cout <<" Is " << 2121657 << " a Prime Number? " << flag << endl;
+
+    cout <<"Prime facotors of " << 23456 << " are :" << endl;
+    vector<long long> ans = checkPrimeFactors(23456);
+    for(int i =0;i< ans.size();i++){
+        cout << ans[i] << " ";
+    }cout << endl;
 }
