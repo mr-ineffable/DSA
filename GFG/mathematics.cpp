@@ -94,6 +94,22 @@ vector<long long> checkPrimeFactors(long long n){
     }
     return ans;
 }
+vector<long long> allDivisor(long long n){
+    long long i=1;
+    vector<long long>allDiv;
+    for(;i*i<=n;i++){
+        if((n%i)==0){
+            allDiv.push_back(i);
+        }
+    }
+    i--;
+    for(;i>=1;i--){
+        if((n%i)==0 and (n/i)!= i){
+            allDiv.push_back(n/i);
+        }
+    }
+    return allDiv;
+}
 int main(){
     int number = 98789;
     int digits = countDigits(number);
@@ -122,5 +138,9 @@ int main(){
     vector<long long> ans = checkPrimeFactors(23456);
     for(int i =0;i< ans.size();i++){
         cout << ans[i] << " ";
+    }cout << endl;
+    vector<long long>divFound = allDivisor(90);
+    for(int i=0;i<divFound.size();i++){
+        cout << divFound[i] <<" ";
     }cout << endl;
 }
