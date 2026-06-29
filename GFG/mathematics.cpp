@@ -110,6 +110,34 @@ vector<long long> allDivisor(long long n){
     }
     return allDiv;
 }
+vector<long long>sieveofEratosthenes(long long n){
+    vector<long long>isPrime(n+1,true);
+    for(long long i = 2; i<=sqrtl(n);i++){
+        if(isPrime[i]){
+            for(long long j = i*i;j<=n;j+=i){
+                isPrime[j] = false;
+            }
+        }
+    }
+    return isPrime;
+}
+long long computerPowerRecursive(int x, int n){
+    if(n==0) return 1;
+    long long temp = computerPowerRecursive(x,n/2);
+    temp *= temp;
+    if(n%2==0) return temp;
+    else return temp*x;
+}
+long long computeIterativePower(int x, int n){
+    long long temp = x;
+    long long res = 1;
+    while(n>0){
+        if(n&1) res *= temp;
+        temp *= temp;
+        n /=2;
+    }
+    return res;
+}
 int main(){
     int number = 98789;
     int digits = countDigits(number);
@@ -143,4 +171,10 @@ int main(){
     for(int i=0;i<divFound.size();i++){
         cout << divFound[i] <<" ";
     }cout << endl;
+    cout << "Prime numbers less than or equal to " << 83 << " are: ";
+    vector<long long>isPrime = sieveofEratosthenes(87);
+    for(int i=2;i<isPrime.size();i++){
+        if(isPrime[i]) cout << i <<" ";
+    }cout <<endl;
+    cout << 4 << " Raised to the power " << 5 << ": " << computerPowerRecursive(4,5) <<" " <<  computeIterativePower(4,5) << endl;
 }
