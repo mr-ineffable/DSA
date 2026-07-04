@@ -167,7 +167,7 @@ int main(){
     for(int i =0;i< ans.size();i++){
         cout << ans[i] << " ";
     }cout << endl;
-    vector<long long>divFound = allDivisor(90);
+    vector<long long>divFound = allDivisor(625);
     for(int i=0;i<divFound.size();i++){
         cout << divFound[i] <<" ";
     }cout << endl;
