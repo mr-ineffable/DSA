@@ -2,6 +2,7 @@
 #include<boost/multiprecision/cpp_int.hpp>
 using namespace std;
 using namespace boost::multiprecision;
+const int MOD = 998244353;
 
 int countDigits(int n){
     int cnt = 0;
@@ -137,6 +138,24 @@ long long computeIterativePower(int x, int n){
         n /=2;
     }
     return res;
+}
+long long fastExponentiation(long long a, long long x){
+    a %= MOD;
+    long long val = a;
+    long long ans = 1;
+    while(x > 0){
+        if(x&1){
+            ans = (ans*val)%MOD;
+        }
+        val = (val*val)%MOD;
+        x >>= 1;
+    }
+    return ans%MOD;
+
+}
+long long moduloInverse(long long a){
+    long long ans = fastExponentiation(a,MOD-2);
+    return ans;
 }
 int main(){
     int number = 98789;
