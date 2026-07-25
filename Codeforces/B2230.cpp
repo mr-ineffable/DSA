@@ -1,39 +1,21 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
-int main() {
+int main(){
     int tt;
     cin >> tt;
-
-    while (tt--) {
+    while(tt--){
         string s;
         cin >> s;
-
-        int cnt2 = 0;
-        int cnt4 = 0;
-
-        for (char c : s) {
-            if (c == '2') cnt2++;
-            if (c == '4') cnt4++;
-        }
-
-        // Remove all 2s
-        int ans = cnt2;
-
-        int before13 = 0;
-
-        for (char c : s) {
-            if (c == '1' || c == '3') {
-                before13++;
-            }
-            else if (c == '2') {
-                // Keep this 2:
-                // remove all 1/3 before it
-                // remove every other 2
-                ans = min(ans, before13 + cnt2 - 1);
+        int cnt1=0, cnt2=0,cnt3=0,cnt4=0,ans = INT_MAX;
+        for(int i =0;i<s.size();i++){
+            if(s[i]=='4') cnt4++;
+            else if(s[i]=='1') cnt1++;
+            else if(s[i]=='3') cnt3++;
+            else if(s[i]=='2'){
+                cnt2++;
+                ans = min(cnt1+cnt3, cnt2);
             }
         }
-
-        cout << cnt4 + ans << '\n';
+        cout << ((ans==INT_MAX)? 0:ans) + cnt4 <<"\n";
     }
 }
