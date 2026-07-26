@@ -6,16 +6,26 @@ int main(){
     while(tt--){
         string s;
         cin >> s;
-        int cnt1=0, cnt2=0,cnt3=0,cnt4=0,ans = INT_MAX;
-        for(int i =0;i<s.size();i++){
-            if(s[i]=='4') cnt4++;
-            else if(s[i]=='1') cnt1++;
-            else if(s[i]=='3') cnt3++;
-            else if(s[i]=='2'){
-                cnt2++;
-                ans = min(cnt1+cnt3, cnt2);
+        int sz = s.size();
+        string newString = "";
+        int cnt4=0, oddDigit=0;
+        for(int i =0;i <sz;i++){
+            if(s[i]=='4'){
+                cnt4++;
+            }
+            else{
+                if(s[i]!='2') oddDigit++;
+                newString += s[i];
             }
         }
-        cout << ((ans==INT_MAX)? 0:ans) + cnt4 <<"\n";
+        int evenDigit =0;
+        sz = newString.size();
+        int ans = oddDigit;
+        for(int i = 0; i < sz ;i++){
+            if(newString[i]=='2') evenDigit++;
+            else oddDigit--;
+            ans = max(ans,evenDigit+oddDigit);
+        }
+        cout << (((sz-ans)>=0)? (sz-ans):0)+cnt4 << endl;
     }
 }
