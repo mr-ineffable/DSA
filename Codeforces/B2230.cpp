@@ -6,26 +6,23 @@ int main(){
     while(tt--){
         string s;
         cin >> s;
-        int sz = s.size();
+        int cnt4 = 0,oddNumbers =0;
         string newString = "";
-        int cnt4=0, oddDigit=0;
-        for(int i =0;i <sz;i++){
-            if(s[i]=='4'){
-                cnt4++;
-            }
-            else{
-                if(s[i]!='2') oddDigit++;
-                newString += s[i];
+        for(auto &i:s){
+            if(i=='4') cnt4++;
+            else {
+                newString +=i;
+                if(i!='2') oddNumbers++;
             }
         }
-        int evenDigit =0;
-        sz = newString.size();
-        int ans = oddDigit;
-        for(int i = 0; i < sz ;i++){
-            if(newString[i]=='2') evenDigit++;
-            else oddDigit--;
-            ans = max(ans,evenDigit+oddDigit);
+        //perform the split
+        int sz = newString.size();
+        int ans = oddNumbers,evenNumbers=0;
+        for(int i =0;i<sz;i++){
+            if(newString[i]=='2') evenNumbers++;
+            else oddNumbers--;
+            ans = max(ans,evenNumbers+oddNumbers);
         }
-        cout << (((sz-ans)>=0)? (sz-ans):0)+cnt4 << endl;
+        cout << (sz-ans)+cnt4 <<"\n";
     }
 }
