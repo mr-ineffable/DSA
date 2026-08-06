@@ -6,13 +6,13 @@ int main(){
     while(tt--){
         int n;
         cin >> n;
-        vector<int>v(n);
+        vector<long long>v(n);
         for(int i=0; i  <n ; i++){
             cin >> v[i];
         }
-        int start = 1;
+        long long start = 1;
         bool flag = true;
-        int save = 0;
+        long long save = 0;
         for(int i = 0; i < n ; i++){
             if(v[i]+save>=start){
                 save = v[i]+save-start;
